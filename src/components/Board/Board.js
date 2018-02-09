@@ -4,10 +4,14 @@ import Tile from "../Tile/Tile.js";
 import sudoku from "sudoku-umd";
 
 const Board = props => {
-	let tiles = sudoku.generate("easy");
+	let tiles = props.value;
 	let splitedTiles = tiles.split("");
 	return (
-		<form>{splitedTiles.map((item, index) => <Tile key={index} />)}</form>
+		<form onSubmit={props.onSubmit}>
+			{splitedTiles.map((item, index) => (
+				<Tile key={index} value={item} onChange={props.onChange} />
+			))}
+		</form>
 	);
 };
 
