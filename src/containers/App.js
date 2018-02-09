@@ -56,7 +56,7 @@ class App extends React.Component {
 				/>
 				<Board
 					onSubmit={this.handleSubmit.bind(this)}
-					value={this.state.initialBoard}
+					startingBoard={this.state.initialBoard}
 					onChange={this.handleChange.bind(this)}
 				/>
 				<GameButtons />
