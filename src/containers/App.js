@@ -36,7 +36,8 @@ class App extends React.Component {
 
 	handleChange(e) {
 		this.setState({ board: e.target.value });
-		console.log("ok");
+		console.log("input");
+		console.log(this.state.board);
 	}
 
 	handleSubmit(e) {

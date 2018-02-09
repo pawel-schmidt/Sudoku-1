@@ -9,7 +9,7 @@ const Board = props => {
 	return (
 		<form onSubmit={props.onSubmit}>
 			{splitedTiles.map((item, index) => (
-				<Tile key={index} value={item} onChange={props.onChange} />
+				<Tile key={index} onChange={props.onChange} value={item} />
 			))}
 		</form>
 	);
