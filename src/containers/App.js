@@ -19,23 +19,23 @@ class App extends React.Component {
 		};
 	}
 
-	setDifficultyEasy() {
-		this.setState({ initialBoard: sudoku.generate("easy") });
-		console.log("easy");
+	setDifficulty(difficultyLevel) {
+		const board = sudoku.generate(difficultyLevel);
+		this.setState({
+			initialBoard: board,
+			board
+		});
+		console.log(difficultyLevel);
 	}
 
-	setDifficultyMedium() {
-		this.setState({ initialBoard: sudoku.generate("medium") });
-		console.log("medium");
-	}
-
-	setDifficultyHard() {
-		this.setState({ initialBoard: sudoku.generate("hard") });
-		console.log("hard");
-	}
-
-	handleChange(e) {
-		this.setState({ board: e.target.value });
+	handleChange(event, position) {
+		const boardArray = this.state.board.split("");
+		const board = [
+			...boardArray.slice(0, position),
+			event.target.value,
+			...boardArray.slice(position + 1)
+		].join("");
+		this.setState({ board });
 		console.log("input");
 		console.log(this.state.board);
 	}
@@ -50,13 +50,13 @@ class App extends React.Component {
 			<div className={style.App}>
 				<h1>Sudoku</h1>
 				<DifficultyButtons
-					setDifficultyEasy={this.setDifficultyEasy.bind(this)}
-					setDifficultyMedium={this.setDifficultyMedium.bind(this)}
-					setDifficultyHard={this.setDifficultyHard.bind(this)}
+					setDifficultyEasy={() => this.setDifficulty("easy")}
+					setDifficultyMedium={() => this.setDifficulty("medium")}
+					setDifficultyHard={() => this.setDifficulty("hard")}
 				/>
 				<Board
 					onSubmit={this.handleSubmit.bind(this)}
-					startingBoard={this.state.initialBoard}
+					startingBoard={this.state.board}
 					onChange={this.handleChange.bind(this)}
 				/>
 				<GameButtons />
